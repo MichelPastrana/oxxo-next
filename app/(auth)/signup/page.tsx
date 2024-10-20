@@ -12,7 +12,7 @@ export default function SignupPage () {
                 <Input label="Repetir contraseña" type="password" isRequired={true} size="sm"/>
             </div>
             <div className="flex flex-col items-center gap-2">
-                <Button className="bg-orange-300">Registrarse</Button>
+                <Button className="bg-red-300">Registrarse</Button>
                 <p className="text-gray-500">¿Ya tienes una cuenta? <Link href="/login" className="text-blue-500 underline">Inicia Sesion</Link></p>
             </div>
          </div>
