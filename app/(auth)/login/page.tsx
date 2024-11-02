@@ -40,7 +40,7 @@ export default function LoginPage() {
             </div>
 
             <div className="flex flex-col items-center gap-2">
-                <Button className="bg-red-300" type="submit" disabled={submitting}>{submitting ? <Spinner size="md"/> : "Iniciar sesion"}</Button>
+                <Button color="warning" type="submit" disabled={submitting}>{submitting ? <Spinner size="md"/> : "Iniciar sesion"}</Button>
                 <p className="text-gray-500">¿No tienes cuenta? <Link href="/signup" className="text-blue-500 underline">Registrate</Link></p>
             </div>
         </form>

@@ -13,7 +13,7 @@ const NavItem = ({icon, path}: NavItemProps) => {
     const pathName = usePathname();
     return(
         <Link href={path} className="w-full flex items-center">
-        <span className={pathName === path ? "bg-red-300 w-10/12 flex justify-center rounded-md transition-colors py-2 mx-2" : "w-10/12 py-2 mx-2"}>{icon}</span>
+        <span className={pathName === path ? "bg-orange-300 w-10/12 flex justify-center rounded-md transition-colors py-2 mx-2" : "w-10/12 py-2 mx-2"}>{icon}</span>
         </Link>
     )
 }
