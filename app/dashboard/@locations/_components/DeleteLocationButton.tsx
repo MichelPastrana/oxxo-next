@@ -1,4 +1,4 @@
-import deleteLocation from "@/actions/locations/deleete";
+import deleteLocation from "@/actions/locations/delete";
 import { Button } from "@nextui-org/react";
 
 export default function DeleteLocationButton({ store }: { store: string | string[] | undefined }) {
