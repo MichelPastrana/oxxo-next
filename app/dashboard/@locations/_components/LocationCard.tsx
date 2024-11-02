@@ -1,4 +1,4 @@
-import { API_URL} from "@/constants";
+import { API_URL } from "@/constants";
 import { Location } from "@/entities";
 import { authHeaders } from "@/helpers/authHeaders";
 import { Card, CardBody, CardHeader, Divider } from "@nextui-org/react";
@@ -23,8 +23,7 @@ export default async function LocationCard({ store }: { store: string | string[]
             <Divider />
             <CardBody>
                 <p className="w-full">
-                    Manager:
-                    <Link href={{ pathname: '/dashboard/managers' }}><b>{data.manager?.managerFullName}</b></Link>
+                    Manager: <Link href={{ pathname: `/dashboard/managers/${data.manager?.managerId}` }}><b>{data.manager?.managerFullName}</b></Link>
                 </p>
                 <p>
                     Direccion: <b>{data.locationAddress}</b>
