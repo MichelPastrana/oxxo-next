@@ -1,12 +1,13 @@
-import { createLocation } from "@/actions/locations/create";
 import { API_URL } from "@/constants";
 import { Button, Input } from "@nextui-org/react";
 import SelectManager from "./SelectManager";
 import { authHeaders } from "@/helpers/authHeaders";
 import { Location, Manager } from "@/entities";
+import { updateLocation } from "@/actions/locations/update";
 
 export default async function FormUpdateLocation({ store }: { store: string | string[] | undefined }) {
-    if (!store || store === undefined) return null;
+    if (!store || store === undefined || typeof store === "object") return null;
+    const updateWithStoreId = updateLocation.bind(null, store);
     const responseManagers = await fetch(`${API_URL}/managers`, {
         headers: {
             ...authHeaders()
@@ -30,14 +31,14 @@ export default async function FormUpdateLocation({ store }: { store: string | st
     let foundManager = dataManagers.find((manager)=>manager.managerId === foundLocation?.manager?.managerId)
 
     return (
-        <form action={createLocation} className="bg-gray-300 py-2 px-4 flex flex-col gap-6 w-full rounded-lg">
-            <h1 className="text-3xl text-center">Crear Tienda</h1>
-            <Input defaultValue={foundLocation?.locationName} label="Nombre" placeholder="Oxxo Juriquilla" name="locationName" />
-            <Input defaultValue={foundLocation?.locationAddress} label="Direccion" placeholder="Av De La Luz S/N" name="locationAddress" />
-            <Input defaultValue={foundLocation?.locationLatLng[0].toString()} label="Latitud" placeholder="120" name="locationLat" />
-            <Input defaultValue={foundLocation?.locationLatLng[1].toString()} label="Longitud" placeholder="20" name="locationLng" />
+        <form action={updateWithStoreId} className="bg-gray-300 py-2 px-10 flex flex-col gap-6 w-full rounded-lg">
+            <h1 className="text-3xl text-center">Actualizar Tienda</h1>
+            <Input required={true} defaultValue={foundLocation?.locationName} label="Nombre" placeholder="Oxxo Juriquilla" name="locationName" />
+            <Input required={true} defaultValue={foundLocation?.locationAddress} label="Direccion" placeholder="Av De La Luz S/N" name="locationAddress" />
+            <Input required={true} defaultValue={foundLocation?.locationLatLng[0].toString()} label="Latitud" placeholder="120" name="locationLat" />
+            <Input required={true} defaultValue={foundLocation?.locationLatLng[1].toString()} label="Longitud" placeholder="20" name="locationLng" />
             <SelectManager defaultManager={foundManager?.managerId} managers={dataManagers} locations={dataLocations} />
-            <Button type="submit" color="warning">Subir</Button>
+            <Button type="submit" color="warning">Actualizar</Button>
         </form>
     );
 }
