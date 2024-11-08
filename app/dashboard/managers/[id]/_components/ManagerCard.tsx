@@ -13,8 +13,9 @@ export default function ManagerCard({ manager }: { manager: Manager }) {
                 <div className="flex flex-col text-lg">
                     <p className="w-full">Email: <b>{manager.managerEmail}</b></p>
                     <p className="w-full">Teléfono: <b>{manager.managerPhoneNumber}</b></p>
+                    <p className="w-full">Salario: <b>{manager.managerSalary}</b></p>
                     <p className={manager.location ? "w-full" : "hidden"}>
-                        Tienda:
+                        Tienda:{" "}
                         <Link href={{
                             pathname: `/dashboard`,
                             query: {
