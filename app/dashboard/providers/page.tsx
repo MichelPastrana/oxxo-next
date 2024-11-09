@@ -1,7 +1,7 @@
 import { API_URL } from "@/constants";
 import { Provider } from "@/entities";
 import { authHeaders } from "@/helpers/authHeaders";
-import ProvidersCard from "./_components/ProvidersCard";
+import ProviderCard from "./_components/ProviderCard";
 import Link from "next/link";
 import FormCreateProvider from "./_components/FormCreateProvider";
 import CreateProvider from "./_components/CreateProvider";
@@ -10,6 +10,9 @@ const ProviderPage = async () => {
     const response = await fetch(`${API_URL}/providers`, {
         headers: {
             ...authHeaders()
+        },
+        next: {
+            tags: ["dashboard:providers"]
         }
     })
     const providers: Provider[] = await response.json()
@@ -22,7 +25,7 @@ const ProviderPage = async () => {
             <div className="flex flex-wrap w-full py-20 flex-grow-0 gap-14">
                 {providers.map((provider: Provider) => (
                     <Link className="hover:scale-110 transition-transform" href={{ pathname: `/dashboard/providers/${provider.providerId}` }}>
-                        <ProvidersCard provider={provider} key={provider.providerId} />
+                        <ProviderCard provider={provider} key={provider.providerId} />
                     </Link>
                 ))}
             </div>
