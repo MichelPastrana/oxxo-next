@@ -15,7 +15,7 @@ export default async function updateManager(managerId: string, formData: FormDat
     manager.location = +manager.location
     if (!manager?.location) delete manager?.location;
     
-    const response = await fetch(`${API_URL}/managers:${managerId}`, {
+    const response = await fetch(`${API_URL}/managers/${managerId}`, {
         method: "PATCH",
         body: JSON.stringify(manager),
         headers: {
