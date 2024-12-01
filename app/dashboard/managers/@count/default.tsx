@@ -1,3 +1,3 @@
 export default function DefaultPage() {
-    return ("No contenet")
+    return ("No content")
 }

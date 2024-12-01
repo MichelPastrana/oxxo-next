@@ -14,6 +14,9 @@ export default async function ManagerCards() {
             tags: ["dashboard:managers"]
         }
     });
+
+    if (response.status === 403) return 'Acceso restringido!';
+
     const data: Manager[] = await response.json()
 
     return data?.map((manager: Manager) => {

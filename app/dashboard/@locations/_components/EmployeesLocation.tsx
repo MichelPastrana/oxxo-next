@@ -14,6 +14,7 @@ export default async function EmployeesLocation({ store }: { store: string | str
             tags: ["dashboard:locations:employees"]
         }
     });
+    if (response.status === 403) return null;
     const data: Employee[] = await response.json()
 
     return data?.map((employee: Employee) => {

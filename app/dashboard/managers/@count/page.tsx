@@ -2,6 +2,7 @@ import { API_URL } from "@/constants";
 import { Manager } from "@/entities";
 import { authHeaders } from "@/helpers/authHeaders";
 import { Card } from "@nextui-org/react";
+import { redirect } from "next/navigation";
 
 export default async function CountManagersPage() {
     const response = await fetch(`${API_URL}/managers`, {
@@ -12,6 +13,8 @@ export default async function CountManagersPage() {
             tags: ["dashboard:managers"]
         }
     })
+    //Si el role no es adecuado mandarlo a una seccion donde si pueda entrar
+    if (response.status === 403) redirect("/dashboard");;
     const managers: Manager[] = await response.json()
     const countNoStore = managers.filter((manager: Manager) => !manager.location).length;
     let max = 0;

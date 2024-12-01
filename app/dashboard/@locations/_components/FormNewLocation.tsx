@@ -15,6 +15,7 @@ export default async function FormNewLocation({ store }: { store: string | strin
             tags: ["dashboard:managers"]
         }
     })
+    if (responseManagers.status === 403) return null;
     const dataManagers: Manager[] = await responseManagers.json()
     const responseLocations = await fetch(`${API_URL}/locations`, {
         headers: {
